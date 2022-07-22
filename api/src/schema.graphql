@@ -7,20 +7,29 @@ type User {
   name: String
   user_id: Int
   post: [Post]
-  profile: [Profile]
+  profile: Profile
 }
 
 type Post {
+  id: Int
   content: String
   post_id: Int!
+  published: Boolean
   title: String!
   author: User
   author_id: Int
+  categories: [Category]
 }
 
 type Profile {
+  id: Int
   bio: String
-  profile_id: Int
   user: User
   user_id: Int
+}
+
+type Category {
+  id: Int
+  name: String
+  posts: [Post]
 }

@@ -3,29 +3,39 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./hello-prisma.db"
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
-  email   String    @unique
-  name    String?
-  user_id Int       @id @default(autoincrement())
-  post    Post[]
-  profile Profile[]
+  id      Int      @id @default(autoincrement())
+  name    String
+  email   String   @unique
+  posts   Post[]
+  profile Profile?
 }
 
 model Post {
-  content   String?
-  post_id   Int     @id @default(autoincrement())
-  title     String
-  author    User?   @relation(fields: [author_id], references: [user_id])
-  author_id Int?
+  id         Int        @id @default(autoincrement())
+  title      String
+  published  Boolean    @default(true)
+  content    String     @db.VarChar(500)
+  authorId   Int
+  author     User       @relation(fields: [authorId], references: [id])
+  categories Category[]
 }
 
 model Profile {
-  bio        String?
-  profile_id Int     @id @default(autoincrement())
-  user       User    @relation(fields: [user_id], references: [user_id])
-  user_id    Int     @unique
+  id     Int    @id @default(autoincrement())
+  bio    String
+  userId Int    @unique
+  user   User   @relation(fields: [userId], references: [id])
+}
+
+model Category {
+  id    Int    @id @default(autoincrement())
+  name  String @db.VarChar(50)
+  posts Post[]
+
+  @@unique([name])
 }
