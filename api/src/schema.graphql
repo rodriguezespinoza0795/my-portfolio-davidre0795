@@ -1,0 +1,26 @@
+type Query {
+  users: [User]
+}
+
+type User {
+  email: String!
+  name: String
+  user_id: Int
+  post: [Post]
+  profile: [Profile]
+}
+
+type Post {
+  content: String
+  post_id: Int!
+  title: String!
+  author: User
+  author_id: Int
+}
+
+type Profile {
+  bio: String
+  profile_id: Int
+  user: User
+  user_id: Int
+}

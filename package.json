@@ -1,0 +1,14 @@
+{
+  "name": "my-portfolio-davidre0795",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": "true",
+  "workspaces": [
+    "api",
+    "client"
+  ],
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  }
+}
