@@ -1,46 +1,34 @@
 import React from 'react';
 
-import { IconButton, Typography, Box, Menu, MenuItem} from '@mui/material';
+import { IconButton, Box, Button} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
-const MenuButton = ({handleOpenNavMenu, anchorElNav, handleCloseNavMenu, pages}) => {
+const MenuButton = ({handleDrawerToggle, pages}) => {
   return (
+    <>
     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
       <IconButton
         size="large"
-        aria-label="account of current user"
-        aria-controls="menu-appbar"
-        aria-haspopup="true"
-        onClick={handleOpenNavMenu}
         color="inherit"
+        aria-label="open drawer"
+        edge="start"
+        onClick={handleDrawerToggle}
+        sx={{ mr: 2, display: { xs: 'flex', md: 'none' } }}
       >
         <MenuIcon />
       </IconButton>
-      <Menu
-        id="menu-appbar"
-        anchorEl={anchorElNav}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        keepMounted
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'left',
-        }}
-        open={Boolean(anchorElNav)}
-        onClose={handleCloseNavMenu}
-        sx={{
-          display: { xs: 'block', md: 'none' },
-        }}
-      >
-        {pages.map((page) => (
-          <MenuItem key={page} onClick={handleCloseNavMenu}>
-            <Typography textAlign="center">{page}</Typography>
-          </MenuItem>
-        ))}
-      </Menu>
     </Box>
+    <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'none', md: 'flex' } }}>
+      {pages.map((page) => (
+        <Button
+          key={page}
+          sx={{ my: 2, color: 'white', display: 'block' }}
+        >
+          {page}
+        </Button>
+      ))}
+    </Box>
+    </>
   )
 }
 

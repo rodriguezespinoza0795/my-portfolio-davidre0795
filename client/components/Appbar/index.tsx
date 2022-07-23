@@ -1,89 +1,46 @@
 import React, {useState} from 'react';
-import {AppBar, Toolbar, Typography, Box, Container, Button } from '@mui/material';
-import AdbIcon from '@mui/icons-material/Adb';
+import PropTypes from 'prop-types';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container'
 import MenuButton from './MenuButton'
 import SettingButton from './SettingsButton'
+import Logo from './Logo'
+import DrawerComponent from '../Drawer'
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const navItems = ['Home', 'About', 'Contact'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-const ResponsiveAppBar = () => {
-  const [anchorElNav, setAnchorElNav] = useState(null);
+function DrawerAppBar(props) {
+  const { window } = props;
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
   return (
-    <AppBar position="static">
+    <Box sx={{ display: 'flex' }}>
+      <AppBar component="nav">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
+          <Logo variant="h6" displayXS="none" displayMD="flex" flexGrow={0}/>
           <MenuButton
-            handleOpenNavMenu={handleOpenNavMenu}
-            anchorElNav={anchorElNav}
-            handleCloseNavMenu={handleCloseNavMenu}
-            pages={pages}
+            pages={navItems}
+            handleDrawerToggle={handleDrawerToggle}
           />
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box>
+          <Logo variant="h5" displayXS="flex" displayMD="none" flexGrow={1}/>
           <SettingButton
             handleOpenUserMenu={handleOpenUserMenu}
             anchorElUser={anchorElUser}
@@ -92,7 +49,56 @@ const ResponsiveAppBar = () => {
           />
         </Toolbar>
       </Container>
-    </AppBar>
+      </AppBar>
+      <DrawerComponent
+        window={window}
+        mobileOpen={mobileOpen}
+        handleDrawerToggle={handleDrawerToggle}
+        navItems={navItems}
+      />
+      <Box component="main" sx={{ p: 3 }}>
+        <Toolbar />
+        <Typography>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique unde
+          fugit veniam eius, perspiciatis sunt? Corporis qui ducimus quibusdam,
+          aliquam dolore excepturi quae. Distinctio enim at eligendi perferendis in
+          cum quibusdam sed quae, accusantium et aperiam? Quod itaque exercitationem,
+          at ab sequi qui modi delectus quia corrupti alias distinctio nostrum.
+          Minima ex dolor modi inventore sapiente necessitatibus aliquam fuga et. Sed
+          numquam quibusdam at officia sapiente porro maxime corrupti perspiciatis
+          asperiores, exercitationem eius nostrum consequuntur iure aliquam itaque,
+          assumenda et! Quibusdam temporibus beatae doloremque voluptatum doloribus
+          soluta accusamus porro reprehenderit eos inventore facere, fugit, molestiae
+          ab officiis illo voluptates recusandae. Vel dolor nobis eius, ratione atque
+          soluta, aliquam fugit qui iste architecto perspiciatis. Nobis, voluptatem!
+          Cumque, eligendi unde aliquid minus quis sit debitis obcaecati error,
+          delectus quo eius exercitationem tempore. Delectus sapiente, provident
+          corporis dolorum quibusdam aut beatae repellendus est labore quisquam
+          praesentium repudiandae non vel laboriosam quo ab perferendis velit ipsa
+          deleniti modi! Ipsam, illo quod. Nesciunt commodi nihil corrupti cum non
+          fugiat praesentium doloremque architecto laborum aliquid. Quae, maxime
+          recusandae? Eveniet dolore molestiae dicta blanditiis est expedita eius
+          debitis cupiditate porro sed aspernatur quidem, repellat nihil quasi
+          praesentium quia eos, quibusdam provident. Incidunt tempore vel placeat
+          voluptate iure labore, repellendus beatae quia unde est aliquid dolor
+          molestias libero. Reiciendis similique exercitationem consequatur, nobis
+          placeat illo laudantium! Enim perferendis nulla soluta magni error,
+          provident repellat similique cupiditate ipsam, et tempore cumque quod! Qui,
+          iure suscipit tempora unde rerum autem saepe nisi vel cupiditate iusto.
+          Illum, corrupti? Fugiat quidem accusantium nulla. Aliquid inventore commodi
+          reprehenderit rerum reiciendis! Quidem alias repudiandae eaque eveniet
+          cumque nihil aliquam in expedita, impedit quas ipsum nesciunt ipsa ullam
+          consequuntur dignissimos numquam at nisi porro a, quaerat rem repellendus.
+          Voluptates perspiciatis, in pariatur impedit, nam facilis libero dolorem
+          dolores sunt inventore perferendis, aut sapiente modi nesciunt.
+        </Typography>
+      </Box>
+    </Box>
   );
+}
+
+DrawerAppBar.propTypes = {
+  window: PropTypes.func,
 };
-export default ResponsiveAppBar;
+
+export default DrawerAppBar;
