@@ -4,7 +4,12 @@ import { IconButton, Box, Button} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import Link from 'next/link'
 
-const MenuButton = ({handleDrawerToggle, pages}) => {
+type MenuButtonProps = {
+  handleDrawerToggle: () => any;
+  pages: { projectID: number; name: string; path: string; }[];
+}
+
+const MenuButton = ({handleDrawerToggle, pages}: MenuButtonProps) => {
   return (
     <>
     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>

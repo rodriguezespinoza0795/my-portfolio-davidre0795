@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState } from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -12,11 +12,14 @@ import DrawerComponent from '../Drawer'
 const navItems = [{ "projectID":1, "name":"bBox", "path":"/projects/bBox"}];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-function DrawerAppBar({children}) {
+type LayoutProps = {
+  children?: React.ReactNode
+}
+function DrawerAppBar({ children }: LayoutProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [anchorElUser, setAnchorElUser] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState<any>(null);
 
-  const handleOpenUserMenu = (event) => {
+  const handleOpenUserMenu = (event: React.FormEvent<HTMLInputElement>) : void => {
     setAnchorElUser(event.currentTarget);
   };
 

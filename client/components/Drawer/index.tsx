@@ -11,7 +11,17 @@ import Link from 'next/link'
 
 const drawerWidth = 240;
 
-const DrawerComponent = ({mobileOpen, handleDrawerToggle, navItems}) => {
+type SettingButtonProps = {
+  mobileOpen: any;
+  handleDrawerToggle: any;
+  navItems: {
+    projectID: number;
+    name: string;
+    path: string;
+}[];
+}
+
+const DrawerComponent = ({mobileOpen, handleDrawerToggle, navItems}:SettingButtonProps) => {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 2 }}>

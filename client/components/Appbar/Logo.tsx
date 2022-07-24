@@ -4,8 +4,9 @@ import { Typography} from '@mui/material';
 import AdbIcon from '@mui/icons-material/Adb';
 import Link from 'next/link'
 
+type inputTypes = {variant:any, displayXS:string, displayMD:string, flexGrow:number}
 
-const Logo = ({variant, displayXS, displayMD, flexGrow}) => {
+const Logo = ({variant, displayXS, displayMD, flexGrow}:inputTypes) => {
   return (
     <>
       <AdbIcon sx={{ display: { xs: displayXS, md: displayMD }, mr: 1 }} />

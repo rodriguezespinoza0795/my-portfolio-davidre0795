@@ -1,5 +1,5 @@
 import type { AppProps } from 'next/app'
-import AppBar from '../components/Appbar'
+import AppBar from '@components/Appbar'
 import Head from 'next/head'
 
 

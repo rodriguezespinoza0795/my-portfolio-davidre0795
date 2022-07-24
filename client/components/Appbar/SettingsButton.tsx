@@ -3,8 +3,14 @@ import React from 'react';
 import { IconButton, Typography, Box, Menu, Tooltip, MenuItem} from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 
+type SettingButtonProps = {
+  handleOpenUserMenu: any;
+  anchorElUser: any;
+  handleCloseUserMenu: any;
+  settings: string[];
+}
 
-const SettingButton = ({handleOpenUserMenu, anchorElUser, handleCloseUserMenu, settings}) => {
+const SettingButton = ({handleOpenUserMenu, anchorElUser, handleCloseUserMenu, settings}:SettingButtonProps) => {
   return (
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Open settings">
@@ -28,7 +34,7 @@ const SettingButton = ({handleOpenUserMenu, anchorElUser, handleCloseUserMenu, s
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
-        {settings.map((setting) => (
+        {settings.map((setting: string) => (
           <MenuItem key={setting} onClick={handleCloseUserMenu}>
             <Typography textAlign="center">{setting}</Typography>
           </MenuItem>
