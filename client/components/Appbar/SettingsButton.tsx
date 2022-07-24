@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { IconButton, Typography, Box, Menu, Avatar, Tooltip, MenuItem} from '@mui/material';
+import { IconButton, Typography, Box, Menu, Tooltip, MenuItem} from '@mui/material';
+import AccountCircle from '@mui/icons-material/AccountCircle';
 
 
 const SettingButton = ({handleOpenUserMenu, anchorElUser, handleCloseUserMenu, settings}) => {
@@ -8,7 +9,7 @@ const SettingButton = ({handleOpenUserMenu, anchorElUser, handleCloseUserMenu, s
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Open settings">
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+          <AccountCircle />
         </IconButton>
       </Tooltip>
       <Menu

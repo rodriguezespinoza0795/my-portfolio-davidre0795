@@ -1,11 +1,9 @@
 import React from 'react';
-import { useRouter } from 'next/router'
 
 const ProjectItem = () => {
-    const {query: {Id}} = useRouter()
     return (
         <div>
-            Esta es la página de proyecto: {Id}
+            Esta es la página de proyecto del proyecto de bBox
         </div>
     );
 }

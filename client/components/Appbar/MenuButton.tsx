@@ -2,6 +2,7 @@ import React from 'react';
 
 import { IconButton, Box, Button} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import Link from 'next/link'
 
 const MenuButton = ({handleDrawerToggle, pages}) => {
   return (
@@ -20,12 +21,14 @@ const MenuButton = ({handleDrawerToggle, pages}) => {
     </Box>
     <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'none', md: 'flex' } }}>
       {pages.map((page) => (
-        <Button
-          key={page}
-          sx={{ my: 2, color: 'white', display: 'block' }}
-        >
-          {page}
-        </Button>
+        <Link key={page.projectID} href={page.path}>
+          <Button
+
+            sx={{ my: 2, color: 'white', display: 'block' }}
+          >
+              {page.name}
+          </Button>
+        </Link>
       ))}
     </Box>
     </>
