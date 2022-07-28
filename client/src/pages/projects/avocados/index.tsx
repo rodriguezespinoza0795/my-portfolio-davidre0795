@@ -6,7 +6,10 @@ import Select from "@mui/material/Select";
 import React, { useState } from "react";
 import Image from "next/image";
 
-import { GET_AVOCADOS, GET_AVOCADO } from "./avocados.graphql";
+import {
+  GET_AVOCADOS,
+  GET_AVOCADO,
+} from "@graphql/projects/avocados/avocados.graphql";
 
 const AvocadoImage = ({ id }: { id: string }): any => {
   const { loading, data } = GET_AVOCADO(id);
