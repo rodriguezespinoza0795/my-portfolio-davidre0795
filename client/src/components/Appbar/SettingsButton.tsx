@@ -1,16 +1,28 @@
-import React from 'react';
+import React from "react";
 
-import { IconButton, Typography, Box, Menu, Tooltip, MenuItem} from '@mui/material';
-import AccountCircle from '@mui/icons-material/AccountCircle';
+import {
+  IconButton,
+  Typography,
+  Box,
+  Menu,
+  Tooltip,
+  MenuItem,
+} from "@mui/material";
+import AccountCircle from "@mui/icons-material/AccountCircle";
 
 type SettingButtonProps = {
   handleOpenUserMenu: any;
   anchorElUser: any;
   handleCloseUserMenu: any;
   settings: string[];
-}
+};
 
-const SettingButton = ({handleOpenUserMenu, anchorElUser, handleCloseUserMenu, settings}:SettingButtonProps) => {
+const SettingButton = ({
+  handleOpenUserMenu,
+  anchorElUser,
+  handleCloseUserMenu,
+  settings,
+}: SettingButtonProps) => {
   return (
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Open settings">
@@ -19,17 +31,17 @@ const SettingButton = ({handleOpenUserMenu, anchorElUser, handleCloseUserMenu, s
         </IconButton>
       </Tooltip>
       <Menu
-        sx={{ mt: '45px' }}
+        sx={{ mt: "45px" }}
         id="menu-appbar"
         anchorEl={anchorElUser}
         anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
+          vertical: "top",
+          horizontal: "right",
         }}
         keepMounted
         transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
+          vertical: "top",
+          horizontal: "right",
         }}
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
@@ -41,7 +53,7 @@ const SettingButton = ({handleOpenUserMenu, anchorElUser, handleCloseUserMenu, s
         ))}
       </Menu>
     </Box>
-  )
-}
+  );
+};
 
-export default SettingButton
+export default SettingButton;

@@ -1,16 +1,21 @@
-import React from 'react';
+import React from "react";
 
-import { Typography} from '@mui/material';
-import AdbIcon from '@mui/icons-material/Adb';
-import Link from 'next/link'
+import { Typography } from "@mui/material";
+import AdbIcon from "@mui/icons-material/Adb";
+import Link from "next/link";
 
-type inputTypes = {variant:any, displayXS:string, displayMD:string, flexGrow:number}
+type inputTypes = {
+  variant: any;
+  displayXS: string;
+  displayMD: string;
+  flexGrow: number;
+};
 
-const Logo = ({variant, displayXS, displayMD, flexGrow}:inputTypes) => {
+const Logo = ({ variant, displayXS, displayMD, flexGrow }: inputTypes) => {
   return (
     <>
       <AdbIcon sx={{ display: { xs: displayXS, md: displayMD }, mr: 1 }} />
-      <Link href={'/'}>
+      <Link href={"/"}>
         <Typography
           variant={variant}
           noWrap
@@ -20,18 +25,18 @@ const Logo = ({variant, displayXS, displayMD, flexGrow}:inputTypes) => {
             flexGrow: flexGrow,
             mr: 2,
             display: { xs: displayXS, md: displayMD },
-            fontFamily: 'monospace',
+            fontFamily: "monospace",
             fontWeight: 700,
-            letterSpacing: '.3rem',
-            color: 'inherit',
-            textDecoration: 'none',
+            letterSpacing: ".3rem",
+            color: "inherit",
+            textDecoration: "none",
           }}
         >
           DRE
         </Typography>
       </Link>
     </>
-  )
-}
+  );
+};
 
-export default Logo
+export default Logo;
