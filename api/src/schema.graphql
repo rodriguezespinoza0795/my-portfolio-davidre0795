@@ -1,35 +1,52 @@
+scalar Datetime
+
 type Query {
   users: [User]
 }
 
+type Mutation {
+  createUser(data: createUserInput!): User!
+}
+
 type User {
+  id: Int!
+  name: String!
+  username: String!
   email: String!
-  name: String
-  user_id: Int
-  post: [Post]
-  profile: Profile
+  avatar: String
+  website: String
+  description: String
+  password: String!
+  createdAt: Datetime!
 }
 
-type Post {
-  id: Int
-  content: String
-  post_id: Int!
-  published: Boolean
-  title: String!
-  author: User
-  author_id: Int
-  categories: [Category]
+input createUserInput {
+  name: String!
+  username: String!
+  email: String!
+  password: String!
 }
 
-type Profile {
-  id: Int
-  bio: String
-  user: User
-  user_id: Int
-}
+# type Post {
+#   id: Int
+#   content: String
+#   post_id: Int!
+#   published: Boolean
+#   title: String!
+#   author: User
+#   author_id: Int
+#   categories: [Category]
+# }
 
-type Category {
-  id: Int
-  name: String
-  posts: [Post]
-}
+# type Profile {
+#   id: Int
+#   bio: String
+#   user: User
+#   user_id: Int
+# }
+
+# type Category {
+#   id: Int
+#   name: String
+#   posts: [Post]
+# }

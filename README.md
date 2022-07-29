@@ -11,3 +11,7 @@ Generate typescript types
 ```
 npx prisma generate
 ```
+
+Prisma Schema documents  
+https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference
+https://www.prisma.io/docs/concepts/components/prisma-schema/data-model

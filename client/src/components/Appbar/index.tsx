@@ -12,6 +12,7 @@ import DrawerComponent from "../Drawer";
 const navItems = [
   { projectID: 1, name: "bBox", path: "/projects/bBox" },
   { projectID: 2, name: "Avocados", path: "/projects/avocados" },
+  { projectID: 3, name: "Instagram", path: "/projects/instagram" },
 ];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
