@@ -1,25 +1,24 @@
 import { ApolloServer } from 'apollo-server-express';
 import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core';
-import express from 'express';
 import http from 'http';
 import path from 'path';
 import { PrismaClient } from '@prisma/client';
 import { readFileSync } from 'fs';
 import resolvers from './resolvers';
 const prisma = new PrismaClient();
+import app from './server';
 
 const typeDefs = readFileSync(path.join(__dirname, 'schema.graphql'), 'utf8');
 
 !(async function () {
   // Required logic for integrating with Express
-  const app = express();
   const httpServer = http.createServer(app);
 
   // Same ApolloServer initialization as before, plus the drain plugin.
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: { prisma },
+    context: ({ req }) => ({ prisma, user: req.user }),
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   });
 

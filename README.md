@@ -15,3 +15,5 @@ npx prisma generate
 Prisma Schema documents  
 https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference
 https://www.prisma.io/docs/concepts/components/prisma-schema/data-model
+Custom Errors
+https://www.prisma.io/docs/reference/api-reference/error-reference#error-codes
