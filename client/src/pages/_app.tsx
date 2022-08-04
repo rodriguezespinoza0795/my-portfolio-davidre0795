@@ -3,11 +3,12 @@ import AppBar from "@components/Appbar";
 import Head from "next/head";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
-const baseURL = process.env.NEXT_PUBLIC_SERVICE_URL;
+const baseURL = process.env.NEXT_PUBLIC_SERVICE_URL || "http://localhost:4000";
 
 const client = new ApolloClient({
   uri: `${baseURL}/graphql`,
   cache: new InMemoryCache(),
+  connectToDevTools: true,
 });
 
 function MyApp({ Component, pageProps }: AppProps) {

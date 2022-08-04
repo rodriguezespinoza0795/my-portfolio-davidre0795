@@ -14,12 +14,10 @@ import {
 const AvocadoImage = ({ id }: { id: string }): any => {
   const { loading, data } = GET_AVOCADO(id);
 
-  const url = "https://platzi-graphql.herokuapp.com";
-
   return (
     !loading && (
       <Image
-        src={url + data.avo.image}
+        src={data.avo.image}
         alt={data.avo.name}
         width={500}
         height={500}

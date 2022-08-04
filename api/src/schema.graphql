@@ -2,10 +2,13 @@ scalar Datetime
 
 type Query {
   users: [User]
+  avos(skip: Int, take: Int, where: AvoWhereInput): [Avocado]!
+  avo(id: ID!): Avocado
 }
 
 type Mutation {
   createUser(data: createUserInput!): User!
+  createAvo(data: AvoCreateInput!): Avocado!
 }
 
 type User {
@@ -27,26 +30,53 @@ input createUserInput {
   password: String!
 }
 
-# type Post {
-#   id: Int
-#   content: String
-#   post_id: Int!
-#   published: Boolean
-#   title: String!
-#   author: User
-#   author_id: Int
-#   categories: [Category]
-# }
+type Attributes {
+  id: ID!
+  description: String
+  shape: String
+  hardiness: String
+  taste: String
+  avocadoID: Int
+}
 
-# type Profile {
-#   id: Int
-#   bio: String
-#   user: User
-#   user_id: Int
-# }
+type Avocado {
+  id: ID!
+  createdAt: Datetime!
+  updatedAt: Datetime
+  deletedAt: Datetime
+  name: String!
+  sku: String!
+  price: Float!
+  image: String!
+  attributes: Attributes!
+}
 
-# type Category {
-#   id: Int
-#   name: String
-#   posts: [Post]
-# }
+input StringFilterInput {
+  equals: String
+  in: [String]
+  notIn: [String]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: String
+}
+
+input AvoWhereInput {
+  name: StringFilterInput
+  price: Float
+}
+
+input AvoCreateInput {
+  name: String!
+  price: Float!
+  sku: String!
+  image: String!
+  description: String
+  shape: String
+  hardiness: String
+  taste: String
+}
