@@ -1,10 +1,9 @@
-// import { AuthenticationError } from 'apollo-server-express';
+import { AuthenticationError } from 'apollo-server-express';
 import type { PrismaClient, Avocado, Attributes, Prisma } from '@prisma/client';
-// import type { User } from '@prisma/client';
+import type { user } from '@prisma/client';
 
 export type ResolverParent = unknown;
-type ResolverContext = { prisma: PrismaClient };
-// export type ResolverContext = { orm: PrismaClient; user: User | undefined };
+export type ResolverContext = { prisma: PrismaClient; user: user | undefined };
 
 export async function findAll(
   parent: ResolverParent,
@@ -34,26 +33,6 @@ export async function findOne(
   });
 }
 
-// export const resolver: Record<
-//   keyof (Avocado & { attributes: Attributes }),
-//   (parent: Avocado & { attributes: Attributes }) => unknown
-// > = {
-//   id: (parent) => parent.id,
-//   createdAt: (parent) => parent.createdAt,
-//   deletedAt: (parent) => parent.deletedAt,
-//   updatedAt: (parent) => parent.updatedAt,
-//   sku: (parent) => parent.sku,
-//   name: (parent) => parent.name,
-//   price: (parent) => parent.price,
-//   image: (parent) => parent.image,
-//   attributes: (parent) => ({
-//     description: parent.attributes.description,
-//     shape: parent.attributes.shape,
-//     hardiness: parent.attributes.hardiness,
-//     taste: parent.attributes.taste,
-//   }),
-// };
-
 export async function createAvo(
   parent: unknown,
   {
@@ -62,12 +41,11 @@ export async function createAvo(
     data: Pick<Avocado, 'name' | 'price' | 'image' | 'sku'> &
       Omit<Attributes, 'id'>;
   },
-  { prisma }: ResolverContext
-): // { orm, user }: ResolverContext
-Promise<Avocado> {
-  // if (user == undefined) {
-  //   throw new AuthenticationError('Unauthenticated request');
-  // }
+  { prisma, user }: ResolverContext
+): Promise<Avocado> {
+  if (user == undefined) {
+    throw new AuthenticationError('Unauthenticated request');
+  }
 
   const { name, image, price, sku, ...attributes } = data;
   const avo = await prisma.avocado.create({

@@ -18,7 +18,12 @@ const typeDefs = readFileSync(path.join(__dirname, 'schema.graphql'), 'utf8');
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: ({ req }) => ({ prisma, user: req.user }),
+    context: ({ req }) => {
+      // if (req.user === undefined) {
+      //   throw new Error('Unauthenticated User');
+      // }
+      return { prisma, user: req.user };
+    },
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   });
 
