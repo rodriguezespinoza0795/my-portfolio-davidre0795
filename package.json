@@ -4,10 +4,17 @@
   "main": "index.js",
   "license": "MIT",
   "private": "true",
+  "engines": {
+    "node": "16.x"
+  },
   "workspaces": [
     "api",
     "client"
   ],
+  "scripts": {
+    "cy:run": "cypress run",
+    "build": "yarn --cwd api build"
+  },
   "devDependencies": {
     "cypress": "^10.4.0",
     "typescript": "^4.7.4"

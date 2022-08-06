@@ -10,7 +10,9 @@ import app from './server';
 
 const typeDefs = readFileSync(path.join(__dirname, 'schema.graphql'), 'utf8');
 
-!(async function () {
+const port = process.env.PORT || 4000;
+
+export default async function start() {
   // Required logic for integrating with Express
   const httpServer = http.createServer(app);
 
@@ -25,6 +27,7 @@ const typeDefs = readFileSync(path.join(__dirname, 'schema.graphql'), 'utf8');
       return { prisma, user: req.user };
     },
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+    introspection: true,
   });
 
   // More required logic for integrating with Express
@@ -39,8 +42,8 @@ const typeDefs = readFileSync(path.join(__dirname, 'schema.graphql'), 'utf8');
   });
 
   // Modified server startup
-  await new Promise<void>((resolve) =>
-    httpServer.listen({ port: 4000 }, resolve)
+  await new Promise<void>((resolve) => httpServer.listen({ port }, resolve));
+  console.log(
+    `🚀 Server ready at http://localhost:${port}${server.graphqlPath}`
   );
-  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
-})();
+}
